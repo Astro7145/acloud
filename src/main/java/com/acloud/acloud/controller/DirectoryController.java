@@ -3,6 +3,7 @@ package com.acloud.acloud.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.acloud.acloud.dto.CurrentDirectoryDTO;
 import com.acloud.acloud.dto.FileList;
 import com.acloud.acloud.service.DirectoryService;
 
@@ -25,10 +26,10 @@ public class DirectoryController {
     private DirectoryService directoryService;
 
     @GetMapping("/currentDirectory/{curDir}")
-    public List<FileList> getCurrentDirectory(@PathVariable("curDir") String curDir) throws Exception {
-        List<FileList> fileList = directoryService.getCurrentDirectory(abPath + "/" + curDir);
+    public CurrentDirectoryDTO getCurrentDirectory(@PathVariable("curDir") String curDir) throws Exception {
+        CurrentDirectoryDTO currentDirectoryDto = directoryService.getCurrentDirectory(abPath + "/" + curDir, curDir);
 
-        return fileList;
+        return currentDirectoryDto;
     }
     
 }
