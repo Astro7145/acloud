@@ -6,5 +6,5 @@ import com.acloud.acloud.dto.CurrentDirectoryDTO;
 import com.acloud.acloud.dto.FileList;
 
 public interface DirectoryService {
-    CurrentDirectoryDTO getCurrentDirectory(String path, String curDir) throws Exception;
+    CurrentDirectoryDTO getCurrentDirectory(String curDir) throws Exception;
 }

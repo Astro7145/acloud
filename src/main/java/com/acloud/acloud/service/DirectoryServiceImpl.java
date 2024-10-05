@@ -17,16 +17,22 @@ import com.acloud.acloud.util.DateFormatter;
 public class DirectoryServiceImpl implements DirectoryService{
 
     @Override
-    public CurrentDirectoryDTO getCurrentDirectory(String path, String curDir) throws Exception {
+    public CurrentDirectoryDTO getCurrentDirectory(String curDir) throws Exception {
         CurrentDirectoryDTO currentDirectoryDto = new CurrentDirectoryDTO();
 
-        currentDirectoryDto.setDirectory(path);
-        currentDirectoryDto.setCurrentDirectory(curDir);
-
-        File dir = new File(path);
+        File dir = new File(curDir);
         if (!dir.exists()) {
             return currentDirectoryDto;
         }
+        
+        currentDirectoryDto.setDirectory(dir.getAbsolutePath());
+        currentDirectoryDto.setCurrentDirectory(dir.getAbsolutePath());
+        if (dir.getParentFile() != null) {
+            currentDirectoryDto.setPreviousDirectory(dir.getParentFile().getAbsolutePath());
+        } else {
+            currentDirectoryDto.setPreviousDirectory(dir.getAbsolutePath());
+        }
+        
 
         /* 폴더 리스트 설정 */
 

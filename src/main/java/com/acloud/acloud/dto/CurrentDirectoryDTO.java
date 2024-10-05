@@ -14,6 +14,7 @@ import lombok.Setter;
 public class CurrentDirectoryDTO {
     private String directory;
     private String currentDirectory;
+    private String previousDirectory;
 
     private List<FolderList> folderList;
     private List<FileList> fileList;

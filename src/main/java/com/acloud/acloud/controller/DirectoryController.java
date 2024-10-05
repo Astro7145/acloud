@@ -21,15 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/directory")
 public class DirectoryController {
 
-    @Value("${path.absolute}")
-    private String abPath;
-
     @Autowired
     private DirectoryService directoryService;
 
     @GetMapping("/currentDirectory/{*curDir}")
     public CurrentDirectoryDTO getCurrentDirectory(@PathVariable("curDir") String curDir) throws Exception {
-        CurrentDirectoryDTO currentDirectoryDto = directoryService.getCurrentDirectory(abPath + "/" + curDir, curDir);
+        System.out.println(curDir);
+        CurrentDirectoryDTO currentDirectoryDto = directoryService.getCurrentDirectory(curDir);
 
         return currentDirectoryDto;
     }
